@@ -1,0 +1,486 @@
+[
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbookingPerc": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 202,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1645998133780",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-27",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbookingPerc": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 210,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1645998133779",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-27",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 274,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646025860975",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 278,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646025860974",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 345,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646025921890",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 354,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646025921891",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 422,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026260514",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 450,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026260515",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 492,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026311074",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 499,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026311075",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 592,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026531043",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 601,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026531044",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 646,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026570209",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 656,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026570212",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 731,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026912842",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 741,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026912844",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 792,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646026977751",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 794,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646026977755",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 863,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646027063619",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 877,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646027063618",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 942,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Business_1646027225529",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  },
+  {
+    "create_user_id": 242,
+    "data": [
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 100
+      }
+    ],
+    "days_before_departure": [355],
+    "flights_cnt": 0,
+    "id": 950,
+    "market_group_id": 25,
+    "meta": null,
+    "name": "overbooking_SH SW_SH SW 4_Economy_1646027225533",
+    "rules_cnt": 0,
+    "seat_units": null,
+    "seats": null,
+    "timestamp": "2022-02-28",
+    "type": "Overbooking",
+    "update_user_id": 242
+  }
+]
