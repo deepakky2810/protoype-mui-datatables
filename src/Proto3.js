@@ -35,12 +35,10 @@ function Proto3() {
   const [editOpen, setEditOpen] = React.useState(false);
   const [addOpen, setAddOpen] = React.useState(false);
   const [activeRowId, setActiveRowId] = React.useState(null);
-  const [dataIdx, setDataIdx] = React.useState(null);
 
   const handleEditOpen = (value, dataIndex) => {
     setEditOpen(true);
     setActiveRowId(value);
-    // setDataIdx(dataIndex);
   };
 
   const handleEditClose = () => {

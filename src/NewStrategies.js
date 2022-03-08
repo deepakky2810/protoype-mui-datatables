@@ -62,7 +62,6 @@ export const NewStrategies = (props) => {
     const tempVal = new Set(
       Object.values(cache).filter((val) => val !== true && val !== false)
     );
-    console.log(tempVal);
     return tempVal.size === 1 && tempVal.has("");
   };
 

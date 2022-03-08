@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Proto1 from "./src/Proto1";
-import Proto2 from "./src/Proto2";
-import Proto3 from "./src/Proto3";
-import Home from "./src/Home";
+import Proto1 from "./Proto1";
+import Proto2 from "./Proto2";
+import Proto3 from "./Proto3";
+import Home from "./Home";
 
 const App = () => {
   return (

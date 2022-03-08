@@ -10,13 +10,13 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { StrategiesProto3 as Strategies } from "./Strategies";
+import { Strategies } from "./Strategies";
 import { NewStrategies } from "./NewStrategies";
 import NavBar from "./NavBar";
 
 function CutomNameRenderer(value) {
   return (
-    <div style={{ maxWidth: "210px" }}>
+    <div style={{ maxWidth: "250px" }}>
       <Typography>{value}</Typography>
     </div>
   );
@@ -77,11 +77,11 @@ function Proto1() {
     filter: true,
     filterType: "dropdown",
     responsive: responsiveValue,
-    tableBodyHeight: "auto",
+    tableBodyHeight: "80%",
     // tableBodyMaxHeight,
     selectableRows: "none",
     fixedHeader: true,
-    pagination: true
+    pagination: false
   };
 
   return (
@@ -107,18 +107,18 @@ function Proto1() {
         style={{
           display: "flex",
           height: "95vh",
-          width: "95vw",
+          // width: "95vw",
           marginTop: "25px"
         }}
       >
-        <div>
-          <MUIDataTable
-            title={"Overbooking Tactics"}
-            data={data}
-            columns={columns}
-            options={options}
-          />
-        </div>
+        {/* <div> */}
+        <MUIDataTable
+          title={"Overbooking Tactics"}
+          data={data}
+          columns={columns}
+          options={options}
+        />
+        {/* </div> */}
         {editOpen ? (
           <Strategies
             rowId={activeRowId}
