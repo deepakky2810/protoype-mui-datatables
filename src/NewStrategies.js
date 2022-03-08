@@ -117,11 +117,11 @@ export const NewStrategies = (props) => {
               <td className="td">
                 <input
                   type="text"
-                  value={cache.overbookingPerc}
+                  value={cache.overbooking_percentage}
                   onChange={(e) =>
                     setCache({
                       ...cache,
-                      overbookingPerc: e.target.value
+                      overbooking_percentage: e.target.value
                     })
                   }
                   style={{ width: "41px" }}
