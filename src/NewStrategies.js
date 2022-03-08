@@ -101,7 +101,7 @@ export const NewStrategies = (props) => {
                       days_before_departure: e.target.value
                     })
                   }
-                  style={{ width: "30px" }}
+                  style={{ width: "41px" }}
                 ></input>
               </td>
             </tr>
@@ -124,7 +124,7 @@ export const NewStrategies = (props) => {
                       overbookingPerc: e.target.value
                     })
                   }
-                  style={{ width: "30px" }}
+                  style={{ width: "41px" }}
                 ></input>
               </td>
             </tr>
@@ -147,7 +147,7 @@ export const NewStrategies = (props) => {
                       absolute: e.target.value
                     })
                   }
-                  style={{ width: "30px" }}
+                  style={{ width: "41px" }}
                 ></input>
               </td>
             </tr>

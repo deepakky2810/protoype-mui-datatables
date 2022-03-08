@@ -106,19 +106,16 @@ function Proto1() {
       <div
         style={{
           display: "flex",
-          height: "95vh",
-          // width: "95vw",
+          height: "80vh",
           marginTop: "25px"
         }}
       >
-        {/* <div> */}
         <MUIDataTable
           title={"Overbooking Tactics"}
           data={data}
           columns={columns}
           options={options}
         />
-        {/* </div> */}
         {editOpen ? (
           <Strategies
             rowId={activeRowId}
