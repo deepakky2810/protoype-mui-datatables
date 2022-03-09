@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  Typography as Tpg,
-  Checkbox,
-  IconButton,
-  Button
-} from "@material-ui/core";
+import { Typography as Tpg, Checkbox, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import "./table.css";
-import strats from "./strategies.json";
-import overbooking from "./overbooking.json";
-import AddIcon from "@material-ui/icons/Add";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 const Typography = ({ children, style }) => (
   <Tpg style={{ ...style, fontSize: "0.85rem", color: "#555" }}>{children}</Tpg>

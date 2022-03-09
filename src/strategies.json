@@ -26,14 +26,9 @@
         "absolute": null,
         "force": false,
         "overbooking_percentage": 100
-      },
-      {
-        "absolute": null,
-        "force": false,
-        "overbooking_percentage": 100
       }
     ],
-    "days_before_departure": [355, 300],
+    "days_before_departure": [355],
     "id": 210,
     "market_group_id": 25,
     "meta": null,
