@@ -35,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
     border: "0.5px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
+  },
+  menuList: {
+    padding: 0
+  },
+  menuItemRoot: {
+    padding: "0px 5px",
+    height: "30px"
   }
 }));
 
@@ -265,6 +272,9 @@ export const Strategies = (props) => {
             </tbody>
           </table>
           <Menu
+            classes={{
+              list: classes.menuList
+            }}
             open={contextMenu !== null}
             onClose={handleContextMenuClose}
             anchorReference="anchorPosition"
@@ -275,6 +285,9 @@ export const Strategies = (props) => {
             }
           >
             <MenuItem
+              classes={{
+                root: classes.menuItemRoot
+              }}
               onClick={() => {
                 handleSave();
                 handleContextMenuClose();
