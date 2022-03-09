@@ -8,12 +8,14 @@ import {
   TextField,
   DialogTitle,
   DialogContent,
-  Divider,
+  Collapse,
   DialogActions,
   Grid,
   InputLabel
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import "./table.css";
 
 export const NewStrategiesProto4 = (props) => {
@@ -24,16 +26,7 @@ export const NewStrategiesProto4 = (props) => {
   const [overbookingPercArr, setOverbookingPercArr] = React.useState([""]);
   const [absoluteArr, setAbsoluteArr] = React.useState([""]);
   const [forceArr, setForceArr] = React.useState([""]);
-
-  // React.useEffect(() => {
-  //   setDaysBeforeDepartureArr(strategyData?.days_before_departure);
-  //   setOverbookingPercArr(
-  //     strategyData?.data?.map((obj) => obj?.overbooking_percentage)
-  //   );
-  //   setAbsoluteArr(strategyData?.data?.map((obj) => obj?.absolute));
-  //   setForceArr(strategyData?.data?.map((obj) => obj?.force));
-  // }, [strategyData]);
-  // console.log(daysBeforeDepartureArr);
+  const [isExpanded, setIsExpanded] = React.useState([true]);
 
   const initialCacheState = {
     days_before_departure: "",
@@ -41,8 +34,7 @@ export const NewStrategiesProto4 = (props) => {
     absolute: "",
     force: false
   };
-  const [cache, setCache] = React.useState(initialCacheState);
-  const handleSave = () => {
+  const handleAddNewRule = () => {
     setDaysBeforeDepartureArr([
       ...daysBeforeDepartureArr,
       initialCacheState.days_before_departure
@@ -53,18 +45,20 @@ export const NewStrategiesProto4 = (props) => {
     ]);
     setAbsoluteArr([...absoluteArr, initialCacheState.absolute]);
     setForceArr([...forceArr, initialCacheState.force]);
+    let temp = [...isExpanded];
+
+    temp.splice(isExpanded.length - 1, 1, false);
+    temp.push(true);
+    setIsExpanded(temp);
   };
   const isSaveDisabled = () => {
-    const tempVal = new Set(
-      Object.values(cache).filter((val) => val !== true && val !== false)
-    );
-    return tempVal.size === 1 && tempVal.has("");
+    const uDBD = new Set(daysBeforeDepartureArr);
+    const uOP = new Set(overbookingPercArr);
+    const uA = new Set(absoluteArr);
+    const isEmpty = (set) => set.size === 1 && set.has("");
+
+    return isEmpty(uDBD) && isEmpty(uOP) && isEmpty(uA);
   };
-  const handleTextChange = (e, property) =>
-    setCache({
-      ...cache,
-      [property]: e.target.value
-    });
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth={"xs"} fullWidth>
@@ -78,82 +72,97 @@ export const NewStrategiesProto4 = (props) => {
               alignItems="center"
               style={{ marginTop: "10px", marginBottom: "10px" }}
             >
-              <Grid item xs={3}>
+              <Grid
+                item
+                xs={12}
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <Typography
                   style={{ fontWeight: "bold" }}
                   variant="subtitle1"
                 >{`Rule ${idx + 1}`}</Typography>
+                <IconButton
+                  onClick={() => {
+                    let temp = [...isExpanded];
+                    temp.splice(idx, 1, !isExpanded?.[idx]);
+                    setIsExpanded(temp);
+                  }}
+                >
+                  {isExpanded?.[idx] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </IconButton>
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <TextField
-                  id="dpInput"
-                  label="DP"
-                  type="text"
-                  // variant="outlined"
-                  value={daysBeforeDepartureArr?.[idx]}
-                  onChange={(e) => {
-                    let temp = [...daysBeforeDepartureArr];
-                    temp.splice(idx, 1, e.target.value);
-                    setDaysBeforeDepartureArr([...temp]);
-                  }}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
+            <Collapse in={isExpanded?.[idx]}>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    id="dpInput"
+                    label="DP"
+                    type="text"
+                    // variant="outlined"
+                    value={daysBeforeDepartureArr?.[idx]}
+                    onChange={(e) => {
+                      let temp = [...daysBeforeDepartureArr];
+                      temp.splice(idx, 1, e.target.value);
+                      setDaysBeforeDepartureArr([...temp]);
+                    }}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    id="overbooking%"
+                    label="Overbooking %"
+                    type="text"
+                    // variant="outlined"
+                    value={overbookingPercArr?.[idx]}
+                    onChange={(e) => {
+                      let temp = [...overbookingPercArr];
+                      temp.splice(idx, 1, e.target.value);
+                      setOverbookingPercArr([...temp]);
+                    }}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    id="absoluteValue"
+                    label="Absolute Value"
+                    type="text"
+                    // variant="outlined"
+                    value={absoluteArr?.[idx]}
+                    onChange={(e) => {
+                      let temp = [...absoluteArr];
+                      temp.splice(idx, 1, e.target.value);
+                      setAbsoluteArr([...temp]);
+                    }}
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <Checkbox
+                    size="small"
+                    checked={forceArr?.[idx]}
+                    onChange={(e) => {
+                      let temp = [...forceArr];
+                      temp.splice(idx, 1, e.target.checked);
+                      setForceArr([...temp]);
+                    }}
+                  />
+                  <InputLabel>Force</InputLabel>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="overbooking%"
-                  label="Overbooking %"
-                  type="text"
-                  // variant="outlined"
-                  value={overbookingPercArr?.[idx]}
-                  onChange={(e) => {
-                    let temp = [...overbookingPercArr];
-                    temp.splice(idx, 1, e.target.value);
-                    setOverbookingPercArr([...temp]);
-                  }}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="absoluteValue"
-                  label="Absolute Value"
-                  type="text"
-                  // variant="outlined"
-                  value={absoluteArr?.[idx]}
-                  onChange={(e) => {
-                    let temp = [...absoluteArr];
-                    temp.splice(idx, 1, e.target.value);
-                    setAbsoluteArr([...temp]);
-                  }}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={6}
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <Checkbox
-                  size="small"
-                  checked={forceArr?.[idx]}
-                  onChange={(e) => {
-                    let temp = [...forceArr];
-                    temp.splice(idx, 1, e.target.checked);
-                    setForceArr([...temp]);
-                  }}
-                />
-                <InputLabel>Force</InputLabel>
-              </Grid>
-            </Grid>
+            </Collapse>
             <Grid
               container
               spacing={2}
@@ -163,7 +172,7 @@ export const NewStrategiesProto4 = (props) => {
               {idx === arr.length - 1 && (
                 <Grid item xs={2}>
                   <IconButton
-                    onClick={handleSave}
+                    onClick={handleAddNewRule}
                     style={{
                       padding: "0px",
                       height: "20px",
@@ -184,7 +193,7 @@ export const NewStrategiesProto4 = (props) => {
           Cancel
         </Button>
         <Button
-          onClick={handleSave}
+          onClick={handleClose}
           color="primary"
           disabled={isSaveDisabled()}
         >

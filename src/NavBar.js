@@ -16,7 +16,8 @@ const styles = {
     justifyContent: "space-between"
   },
   buttonStyle: {
-    backgroundColor: "#00b2ca",
+    backgroundColor: "red",
+    color: "white",
     height: "25px"
   }
 };
