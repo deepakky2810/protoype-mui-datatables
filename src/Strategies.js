@@ -3,7 +3,9 @@ import {
   Typography as Tpg,
   Checkbox,
   IconButton,
-  Button
+  Button,
+  Menu,
+  MenuItem
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import "./table.css";
@@ -207,11 +209,39 @@ export const Strategies = (props) => {
               </tr>
               <tr className="tr">
                 <td className="td">
+                  <Typography>Overbooking %</Typography>
+                </td>
+                {overbookingPercArr.map((val, idx) => (
+                  <td className="td">
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...overbookingPercArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setOverbookingPercArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
+                <td className="td">
                   <Typography>Abs value</Typography>
                 </td>
-                {absoluteArr.map((val) => (
+                {absoluteArr.map((val, idx) => (
                   <td className="td">
-                    <Typography>{val}</Typography>
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...absoluteArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setAbsoluteArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
                   </td>
                 ))}
               </tr>
@@ -219,14 +249,41 @@ export const Strategies = (props) => {
                 <td className="td">
                   <Typography>Force</Typography>
                 </td>
-                {forceArr.map((val) => (
+                {forceArr.map((val, idx) => (
                   <td className="td">
-                    <Checkbox defaultChecked={val} />
+                    <Checkbox
+                      checked={val}
+                      onChange={(e) => {
+                        let temp = [...forceArr];
+                        temp.splice(idx, 1, !!e.target.checked);
+                        setForceArr([...temp]);
+                      }}
+                    />
                   </td>
                 ))}
               </tr>
             </tbody>
           </table>
+          <Menu
+            open={contextMenu !== null}
+            onClose={handleContextMenuClose}
+            anchorReference="anchorPosition"
+            anchorPosition={
+              contextMenu !== null
+                ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+                : undefined
+            }
+          >
+            <MenuItem
+              onClick={() => {
+                handleSave();
+                handleContextMenuClose();
+              }}
+            >
+              Insert a new column
+            </MenuItem>
+            {/* <MenuItem onClick={handleContextMenuClose}>Print</MenuItem> */}
+          </Menu>
         </div>
       </div>
       <div
@@ -239,9 +296,6 @@ export const Strategies = (props) => {
       >
         <Button style={{ height: "25px" }} onClick={handleCancel}>
           Cancel
-        </Button>
-        <Button style={{ height: "25px", backgroundColor: "#00b2ca" }}>
-          Save
         </Button>
       </div>
     </div>

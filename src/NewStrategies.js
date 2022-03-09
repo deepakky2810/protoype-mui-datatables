@@ -29,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
     border: "0.5px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
+  },
+  menuList: {
+    padding: 0
+  },
+  menuItemRoot: {
+    padding: "0px 5px",
+    height: "30px"
   }
 }));
 
@@ -49,8 +56,6 @@ export const NewStrategies = (props) => {
   const [overbookingPercArr, setOverbookingPercArr] = React.useState([""]);
   const [absoluteArr, setAbsoluteArr] = React.useState([""]);
   const [forceArr, setForceArr] = React.useState([""]);
-
-  const [cache, setCache] = React.useState(initialCacheState);
 
   const handleAddNewRule = () => {
     setDaysBeforeDepartureArr([
@@ -120,7 +125,7 @@ export const NewStrategies = (props) => {
                   <td className="td">
                     <input
                       type="text"
-                      value={val}
+                      value={val ?? ""}
                       onChange={(e) => {
                         let temp = [...daysBeforeDepartureArr];
                         temp.splice(idx, 1, e.target.value);
@@ -139,7 +144,7 @@ export const NewStrategies = (props) => {
                   <td className="td">
                     <input
                       type="text"
-                      value={val}
+                      value={val ?? ""}
                       onChange={(e) => {
                         let temp = [...overbookingPercArr];
                         temp.splice(idx, 1, e.target.value);
@@ -158,7 +163,7 @@ export const NewStrategies = (props) => {
                   <td className="td">
                     <input
                       type="text"
-                      value={val}
+                      value={val ?? ""}
                       onChange={(e) => {
                         let temp = [...absoluteArr];
                         temp.splice(idx, 1, e.target.value);
@@ -176,7 +181,7 @@ export const NewStrategies = (props) => {
                 {forceArr.map((val, idx) => (
                   <td className="td">
                     <Checkbox
-                      checked={val}
+                      checked={val ?? false}
                       onChange={(e) => {
                         let temp = [...forceArr];
                         temp.splice(idx, 1, !!e.target.checked);
@@ -189,6 +194,9 @@ export const NewStrategies = (props) => {
             </tbody>
           </table>
           <Menu
+            classes={{
+              list: classes.menuList
+            }}
             open={contextMenu !== null}
             onClose={handleContextMenuClose}
             anchorReference="anchorPosition"
@@ -199,14 +207,17 @@ export const NewStrategies = (props) => {
             }
           >
             <MenuItem
+              classes={{
+                root: classes.menuItemRoot
+              }}
               onClick={() => {
                 handleAddNewRule();
                 handleContextMenuClose();
               }}
             >
-              Insert a new column
+              <Typography>Insert a new column</Typography>
             </MenuItem>
-            <MenuItem onClick={handleContextMenuClose}>Print</MenuItem>
+            {/* <MenuItem onClick={handleContextMenuClose}>Print</MenuItem> */}
           </Menu>
         </div>
       </div>
