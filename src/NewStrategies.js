@@ -1,5 +1,11 @@
 import React from "react";
-import { Typography as Tpg, Checkbox, Button } from "@material-ui/core";
+import {
+  Typography as Tpg,
+  Checkbox,
+  Button,
+  Menu,
+  MenuItem
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import "./table.css";
 
@@ -30,29 +36,62 @@ export const NewStrategies = (props) => {
   const { handleClose, isInsideModal } = props;
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [rows, setRows] = React.useState([]);
+
   const initialCacheState = {
     days_before_departure: "",
     overbookingPerc: "",
     absolute: "",
     force: false
   };
-  const [cache, setCache] = React.useState(initialCacheState);
-  const days_before_departure = rows.map((obj) => obj.days_before_departure);
-  const overbookingPercArr = rows.map((obj) => obj.overbooking_percentage);
-  const absoluteArr = rows.map((obj) => obj.absolute);
-  const forceArr = rows.map((obj) => obj.force);
+  const [daysBeforeDepartureArr, setDaysBeforeDepartureArr] = React.useState([
+    ""
+  ]);
+  const [overbookingPercArr, setOverbookingPercArr] = React.useState([""]);
+  const [absoluteArr, setAbsoluteArr] = React.useState([""]);
+  const [forceArr, setForceArr] = React.useState([""]);
 
-  const handleSave = () => {
-    setRows([...rows, cache]);
-    setCache(initialCacheState);
+  const [cache, setCache] = React.useState(initialCacheState);
+
+  const handleAddNewRule = () => {
+    setDaysBeforeDepartureArr([
+      ...daysBeforeDepartureArr,
+      initialCacheState.days_before_departure
+    ]);
+    setOverbookingPercArr([
+      ...overbookingPercArr,
+      initialCacheState.overbookingPerc
+    ]);
+    setAbsoluteArr([...absoluteArr, initialCacheState.absolute]);
+    setForceArr([...forceArr, initialCacheState.force]);
+  };
+  const isSaveDisabled = () => {
+    const uDBD = new Set(daysBeforeDepartureArr);
+    const uOP = new Set(overbookingPercArr);
+    const uA = new Set(absoluteArr);
+    const isEmpty = (set) => set.size === 1 && set.has("");
+
+    return isEmpty(uDBD) && isEmpty(uOP) && isEmpty(uA);
   };
 
-  const isSaveDisabled = () => {
-    const tempVal = new Set(
-      Object.values(cache).filter((val) => val !== true && val !== false)
+  const [contextMenu, setContextMenu] = React.useState(null);
+
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX - 2,
+            mouseY: event.clientY - 4
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null
     );
-    return tempVal.size === 1 && tempVal.has("");
+  };
+
+  const handleContextMenuClose = () => {
+    setContextMenu(null);
   };
 
   return (
@@ -67,103 +106,109 @@ export const NewStrategies = (props) => {
         </Typography>
       </div>
       <div>
-        <table className="table">
-          <tbody>
-            <tr className="tr">
-              <td className="td">
-                <Typography>DP</Typography>
-              </td>
-              {days_before_departure.map((val) => (
+        <div
+          onContextMenu={handleContextMenu}
+          style={{ cursor: "context-menu" }}
+        >
+          <table className="table">
+            <tbody>
+              <tr className="tr">
                 <td className="td">
-                  <div>
-                    <Typography>{val}</Typography>
-                    <Typography style={{ marginLeft: "40px" }}>0</Typography>
-                  </div>
+                  <Typography>DP</Typography>
                 </td>
-              ))}
-              <td className="td">
-                <input
-                  type="text"
-                  value={cache.days_before_departure}
-                  onChange={(e) =>
-                    setCache({
-                      ...cache,
-                      days_before_departure: e.target.value
-                    })
-                  }
-                  style={{ width: "41px" }}
-                ></input>
-              </td>
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Overbooking %</Typography>
-              </td>
-              {overbookingPercArr.map((val) => (
+                {daysBeforeDepartureArr.map((val, idx) => (
+                  <td className="td">
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...daysBeforeDepartureArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setDaysBeforeDepartureArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
                 <td className="td">
-                  <Typography>{val}</Typography>
+                  <Typography>Overbooking %</Typography>
                 </td>
-              ))}
-              <td className="td">
-                <input
-                  type="text"
-                  value={cache.overbooking_percentage}
-                  onChange={(e) =>
-                    setCache({
-                      ...cache,
-                      overbooking_percentage: e.target.value
-                    })
-                  }
-                  style={{ width: "41px" }}
-                ></input>
-              </td>
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Abs value</Typography>
-              </td>
-              {absoluteArr.map((val) => (
+                {overbookingPercArr.map((val, idx) => (
+                  <td className="td">
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...overbookingPercArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setOverbookingPercArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
                 <td className="td">
-                  <Typography>{val}</Typography>
+                  <Typography>Abs value</Typography>
                 </td>
-              ))}
-              <td className="td">
-                <input
-                  type="text"
-                  value={cache.absolute}
-                  onChange={(e) =>
-                    setCache({
-                      ...cache,
-                      absolute: e.target.value
-                    })
-                  }
-                  style={{ width: "41px" }}
-                ></input>
-              </td>
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Force</Typography>
-              </td>
-              {forceArr.map((val) => (
+                {absoluteArr.map((val, idx) => (
+                  <td className="td">
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...absoluteArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setAbsoluteArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
                 <td className="td">
-                  <Checkbox defaultChecked={val} />
+                  <Typography>Force</Typography>
                 </td>
-              ))}
-              <td className="td">
-                <Checkbox
-                  checked={cache.force}
-                  onChange={(e) =>
-                    setCache({
-                      ...cache,
-                      force: !!e.target.checked
-                    })
-                  }
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                {forceArr.map((val, idx) => (
+                  <td className="td">
+                    <Checkbox
+                      checked={val}
+                      onChange={(e) => {
+                        let temp = [...forceArr];
+                        temp.splice(idx, 1, !!e.target.checked);
+                        setForceArr([...temp]);
+                      }}
+                    />
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+          <Menu
+            open={contextMenu !== null}
+            onClose={handleContextMenuClose}
+            anchorReference="anchorPosition"
+            anchorPosition={
+              contextMenu !== null
+                ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+                : undefined
+            }
+          >
+            <MenuItem
+              onClick={() => {
+                handleAddNewRule();
+                handleContextMenuClose();
+              }}
+            >
+              Insert a new column
+            </MenuItem>
+            <MenuItem onClick={handleContextMenuClose}>Print</MenuItem>
+          </Menu>
+        </div>
       </div>
       <div
         style={{
@@ -178,15 +223,14 @@ export const NewStrategies = (props) => {
             style={{ height: "25px" }}
             onClick={() => {
               handleClose();
-              setRows([]);
             }}
           >
             Close
           </Button>
         )}
         <Button
-          onClick={handleSave}
-          disabled={!!isSaveDisabled()}
+          onClick={handleClose}
+          disabled={isSaveDisabled()}
           style={{ height: "25px", backgroundColor: "#00b2ca" }}
         >
           Save

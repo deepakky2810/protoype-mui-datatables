@@ -48,14 +48,84 @@ export const Strategies = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
 
   const idx = overbooking.findIndex((row) => row.id === rowId);
-
   const strategyData = strats.find((obj) => obj.id === rowId);
 
-  const overbookingPercArr = strategyData.data.map(
-    (obj) => obj.overbooking_percentage
+  const [daysBeforeDepartureArr, setDaysBeforeDepartureArr] = React.useState(
+    strategyData?.days_before_departure
   );
-  const absoluteArr = strategyData.data.map((obj) => obj.absolute);
-  const forceArr = strategyData.data.map((obj) => obj.force);
+  const [overbookingPercArr, setOverbookingPercArr] = React.useState(
+    strategyData?.data?.map((obj) => obj?.overbooking_percentage)
+  );
+  const [absoluteArr, setAbsoluteArr] = React.useState(
+    strategyData?.data?.map((obj) => obj?.absolute)
+  );
+  const [forceArr, setForceArr] = React.useState(
+    strategyData?.data?.map((obj) => obj?.force)
+  );
+  const [isExpanded, setIsExpanded] = React.useState(
+    Array(daysBeforeDepartureArr?.length)?.fill(false)
+  );
+  const calcId = React.useRef(rowId);
+
+  React.useEffect(() => {
+    calcId.current = rowId;
+    setDaysBeforeDepartureArr(strategyData?.days_before_departure);
+    setOverbookingPercArr(
+      strategyData?.data?.map((obj) => obj?.overbooking_percentage)
+    );
+    setAbsoluteArr(strategyData?.data?.map((obj) => obj?.absolute));
+    setForceArr(strategyData?.data?.map((obj) => obj?.force));
+    let strategyData11 = strats.find((obj) => obj.id === calcId.current);
+    const length = strategyData11?.days_before_departure?.length ?? 1;
+    const newArr = Array(length)?.fill(false);
+    newArr.splice(newArr.length - 1, 1, true);
+    setIsExpanded(newArr);
+  }, [strategyData]);
+
+  const initialCacheState = {
+    days_before_departure: "",
+    overbookingPerc: "",
+    absolute: "",
+    force: false
+  };
+  const handleSave = () => {
+    setDaysBeforeDepartureArr([
+      ...daysBeforeDepartureArr,
+      initialCacheState.days_before_departure
+    ]);
+    setOverbookingPercArr([
+      ...overbookingPercArr,
+      initialCacheState.overbookingPerc
+    ]);
+    setAbsoluteArr([...absoluteArr, initialCacheState.absolute]);
+    setForceArr([...forceArr, initialCacheState.force]);
+    let temp = [...isExpanded];
+
+    temp.splice(isExpanded.length - 1, 1, false);
+    temp.push(true);
+    setIsExpanded(temp);
+  };
+
+  const [contextMenu, setContextMenu] = React.useState(null);
+
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX - 2,
+            mouseY: event.clientY - 4
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null
+    );
+  };
+
+  const handleContextMenuClose = () => {
+    setContextMenu(null);
+  };
 
   return (
     <div
@@ -69,7 +139,10 @@ export const Strategies = (props) => {
         </Typography>
         <IconButton
           disabled={idx === 0}
-          onClick={() => setRowId(overbooking[idx - 1].id)}
+          onClick={() => {
+            calcId.current = overbooking[idx - 1].id;
+            setRowId(overbooking[idx - 1].id);
+          }}
           style={{
             padding: "0px",
             height: "20px",
@@ -81,7 +154,10 @@ export const Strategies = (props) => {
         </IconButton>
         <IconButton
           disabled={idx === overbooking.length - 1}
-          onClick={() => setRowId(overbooking[idx + 1].id)}
+          onClick={() => {
+            calcId.current = overbooking[idx + 1].id;
+            setRowId(overbooking[idx + 1].id);
+          }}
           style={{
             padding: "0px",
             height: "20px",
@@ -104,53 +180,54 @@ export const Strategies = (props) => {
         </IconButton>
       </div>
       <div>
-        <table className="table">
-          <tbody>
-            <tr className="tr">
-              <td className="td">
-                <Typography>DP</Typography>
-              </td>
-              {strategyData.days_before_departure.map((val) => (
+        <div
+          onContextMenu={handleContextMenu}
+          style={{ cursor: "context-menu" }}
+        >
+          <table className="table">
+            <tbody>
+              <tr className="tr">
                 <td className="td">
-                  <div>
+                  <Typography>DP</Typography>
+                </td>
+                {daysBeforeDepartureArr.map((val, idx) => (
+                  <td className="td">
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={(e) => {
+                        let temp = [...daysBeforeDepartureArr];
+                        temp.splice(idx, 1, e.target.value);
+                        setDaysBeforeDepartureArr([...temp]);
+                      }}
+                      style={{ width: "41px" }}
+                    ></input>
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
+                <td className="td">
+                  <Typography>Abs value</Typography>
+                </td>
+                {absoluteArr.map((val) => (
+                  <td className="td">
                     <Typography>{val}</Typography>
-                    <Typography style={{ marginLeft: "40px" }}>0</Typography>
-                  </div>
-                </td>
-              ))}
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Overbooking %</Typography>
-              </td>
-              {overbookingPercArr.map((val) => (
+                  </td>
+                ))}
+              </tr>
+              <tr className="tr">
                 <td className="td">
-                  <Typography>{val}</Typography>
+                  <Typography>Force</Typography>
                 </td>
-              ))}
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Abs value</Typography>
-              </td>
-              {absoluteArr.map((val) => (
-                <td className="td">
-                  <Typography>{val}</Typography>
-                </td>
-              ))}
-            </tr>
-            <tr className="tr">
-              <td className="td">
-                <Typography>Force</Typography>
-              </td>
-              {forceArr.map((val) => (
-                <td className="td">
-                  <Checkbox defaultChecked={val} />
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+                {forceArr.map((val) => (
+                  <td className="td">
+                    <Checkbox defaultChecked={val} />
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div
         style={{

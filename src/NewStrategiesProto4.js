@@ -65,17 +65,16 @@ export const NewStrategiesProto4 = (props) => {
       <DialogTitle id="new-strategy-dialogbox-title">New Strategy</DialogTitle>
       <DialogContent>
         {daysBeforeDepartureArr?.map((dp, idx, arr) => (
-          <>
-            <Grid
-              container
-              spacing={2}
-              alignItems="center"
-              style={{ marginTop: "10px", marginBottom: "10px" }}
-            >
+          <React.Fragment key={`${dp}-${idx}`}>
+            <Grid container spacing={2} alignItems="center">
               <Grid
                 item
                 xs={12}
-                style={{ display: "flex", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "20px"
+                }}
               >
                 <Typography
                   style={{ fontWeight: "bold" }}
@@ -93,7 +92,7 @@ export const NewStrategiesProto4 = (props) => {
               </Grid>
             </Grid>
             <Collapse in={isExpanded?.[idx]}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} style={{ marginTop: "10px" }}>
                 <Grid item xs={6}>
                   <TextField
                     id="dpInput"
@@ -155,7 +154,7 @@ export const NewStrategiesProto4 = (props) => {
                     checked={forceArr?.[idx]}
                     onChange={(e) => {
                       let temp = [...forceArr];
-                      temp.splice(idx, 1, e.target.checked);
+                      temp.splice(idx, 1, !!e.target.checked);
                       setForceArr([...temp]);
                     }}
                   />
@@ -185,7 +184,7 @@ export const NewStrategiesProto4 = (props) => {
                 </Grid>
               )}
             </Grid>
-          </>
+          </React.Fragment>
         ))}
       </DialogContent>
       <DialogActions>

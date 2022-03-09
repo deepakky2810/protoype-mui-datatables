@@ -26,6 +26,7 @@ export const StrategiesProto4 = (props) => {
   const { handleCancel, rowId, setRowId, onAddButtonClick, open } = props;
   const idx = overbooking.findIndex((row) => row.id === rowId);
   const strategyData = strats.find((obj) => obj.id === rowId);
+
   const [daysBeforeDepartureArr, setDaysBeforeDepartureArr] = React.useState(
     strategyData?.days_before_departure
   );
@@ -41,21 +42,22 @@ export const StrategiesProto4 = (props) => {
   const [isExpanded, setIsExpanded] = React.useState(
     Array(daysBeforeDepartureArr?.length)?.fill(false)
   );
+  const calcId = React.useRef(rowId);
 
   React.useEffect(() => {
+    calcId.current = rowId;
     setDaysBeforeDepartureArr(strategyData?.days_before_departure);
     setOverbookingPercArr(
       strategyData?.data?.map((obj) => obj?.overbooking_percentage)
     );
     setAbsoluteArr(strategyData?.data?.map((obj) => obj?.absolute));
     setForceArr(strategyData?.data?.map((obj) => obj?.force));
-    const length = (daysBeforeDepartureArr?.length ?? 1) - 1;
-    let newArr = Array(length)?.fill(false);
-    newArr.push(true);
+    let strategyData11 = strats.find((obj) => obj.id === calcId.current);
+    const length = strategyData11?.days_before_departure?.length ?? 1;
+    const newArr = Array(length)?.fill(false);
+    newArr.splice(newArr.length - 1, 1, true);
     setIsExpanded(newArr);
-    console.log(newArr);
   }, [strategyData]);
-  // console.log(daysBeforeDepartureArr);
 
   const initialCacheState = {
     days_before_departure: "",
@@ -84,14 +86,16 @@ export const StrategiesProto4 = (props) => {
   return (
     <Dialog open={open} onClose={handleCancel} maxWidth={"xs"} fullWidth>
       <DialogTitle id="new-strategy-dialogbox-title">
-        {" "}
         <div style={{ display: "flex" }}>
           <Typography style={{ marginBottom: "20px" }}>
             {strategyData?.name}
           </Typography>
           <IconButton
             disabled={idx === 0}
-            onClick={() => setRowId(overbooking[idx - 1].id)}
+            onClick={() => {
+              calcId.current = overbooking[idx - 1].id;
+              setRowId(overbooking[idx - 1].id);
+            }}
             style={{
               padding: "0px",
               height: "20px",
@@ -103,7 +107,10 @@ export const StrategiesProto4 = (props) => {
           </IconButton>
           <IconButton
             disabled={idx === overbooking.length - 1}
-            onClick={() => setRowId(overbooking[idx + 1].id)}
+            onClick={() => {
+              calcId.current = overbooking[idx + 1].id;
+              setRowId(overbooking[idx + 1].id);
+            }}
             style={{
               padding: "0px",
               height: "20px",
@@ -128,17 +135,16 @@ export const StrategiesProto4 = (props) => {
       </DialogTitle>
       <DialogContent>
         {daysBeforeDepartureArr?.map((dp, idx, arr) => (
-          <>
-            <Grid
-              container
-              spacing={2}
-              alignItems="center"
-              style={{ marginTop: "10px", marginBottom: "10px" }}
-            >
+          <React.Fragment key={`${dp}-${idx}`}>
+            <Grid container spacing={2} alignItems="center">
               <Grid
                 item
                 xs={12}
-                style={{ display: "flex", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "20px"
+                }}
               >
                 <Typography
                   style={{ fontWeight: "bold" }}
@@ -156,14 +162,14 @@ export const StrategiesProto4 = (props) => {
               </Grid>
             </Grid>
             <Collapse in={isExpanded?.[idx]}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} style={{ marginTop: "10px" }}>
                 <Grid item xs={6}>
                   <TextField
                     id="dpInput"
                     label="DP"
                     type="text"
                     // variant="outlined"
-                    value={daysBeforeDepartureArr?.[idx]}
+                    value={daysBeforeDepartureArr?.[idx] ?? ""}
                     onChange={(e) => {
                       let temp = [...daysBeforeDepartureArr];
                       temp.splice(idx, 1, e.target.value);
@@ -180,7 +186,7 @@ export const StrategiesProto4 = (props) => {
                     label="Overbooking %"
                     type="text"
                     // variant="outlined"
-                    value={overbookingPercArr?.[idx]}
+                    value={overbookingPercArr?.[idx] ?? ""}
                     onChange={(e) => {
                       let temp = [...overbookingPercArr];
                       temp.splice(idx, 1, e.target.value);
@@ -197,7 +203,7 @@ export const StrategiesProto4 = (props) => {
                     label="Absolute Value"
                     type="text"
                     // variant="outlined"
-                    value={absoluteArr?.[idx]}
+                    value={absoluteArr?.[idx] ?? ""}
                     onChange={(e) => {
                       let temp = [...absoluteArr];
                       temp.splice(idx, 1, e.target.value);
@@ -215,7 +221,7 @@ export const StrategiesProto4 = (props) => {
                 >
                   <Checkbox
                     size="small"
-                    checked={forceArr?.[idx]}
+                    checked={forceArr?.[idx] ?? false}
                     onChange={(e) => {
                       let temp = [...forceArr];
                       temp.splice(idx, 1, e.target.checked);
@@ -248,7 +254,7 @@ export const StrategiesProto4 = (props) => {
                 </Grid>
               )}
             </Grid>
-          </>
+          </React.Fragment>
         ))}
       </DialogContent>
       <DialogActions>

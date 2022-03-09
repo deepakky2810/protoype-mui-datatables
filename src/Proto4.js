@@ -37,8 +37,8 @@ function Proto3() {
   const [activeRowId, setActiveRowId] = React.useState(null);
 
   const handleEditOpen = (value, dataIndex) => {
-    setEditOpen(true);
     setActiveRowId(value);
+    setEditOpen(true);
   };
 
   const handleEditClose = () => {
@@ -46,8 +46,8 @@ function Proto3() {
   };
 
   const handleAddOpen = (value, dataIndex) => {
-    setAddOpen(true);
     setActiveRowId(value);
+    setAddOpen(true);
   };
 
   const handleAddClose = () => {
@@ -118,7 +118,6 @@ function Proto3() {
           handleEditClose();
           handleAddOpen();
         }}
-        isInsideModal={true}
         open={editOpen}
       />
       <NewStrategies
