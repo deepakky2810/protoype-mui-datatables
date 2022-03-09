@@ -24,11 +24,16 @@
     "data": [
       {
         "absolute": null,
-        "force": false,
+        "force": true,
         "overbooking_percentage": 100
+      },
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 90
       }
     ],
-    "days_before_departure": [355],
+    "days_before_departure": [355, 354],
     "id": 210,
     "market_group_id": 25,
     "meta": null,
@@ -46,9 +51,19 @@
         "absolute": null,
         "force": false,
         "overbooking_percentage": 100
+      },
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 95
+      },
+      {
+        "absolute": null,
+        "force": false,
+        "overbooking_percentage": 90
       }
     ],
-    "days_before_departure": [355],
+    "days_before_departure": [355, 354, 353],
     "id": 274,
     "market_group_id": 25,
     "meta": null,
